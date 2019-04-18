@@ -47,11 +47,25 @@ void loop() {
 
   // Manage light
   if (lightVal < 100) {
-   Serial.println("Level 10");
+   Blynk.virtualWrite(V2, 10);
   } else if (lightVal < 200) {
-   Serial.println("Level 09");
+   Blynk.virtualWrite(V2, 9);
   } else if (lightVal < 300) {
-   Serial.println("Level 08");
+   Blynk.virtualWrite(V2, 8);
+  }else if (lightVal < 400) {
+   Blynk.virtualWrite(V2, 7);
+  } else if (lightVal < 500) {
+   Blynk.virtualWrite(V2, 6);
+  } else if (lightVal < 600) {
+   Blynk.virtualWrite(V2, 5);
+  } else if (lightVal < 700) {
+   Blynk.virtualWrite(V2, 4);
+  } else if (lightVal < 800) {
+   Blynk.virtualWrite(V2, 3);
+  } else if (lightVal < 900) {
+   Blynk.virtualWrite(V2, 2);
+  } else if (lightVal < 100) {
+   Blynk.virtualWrite(V2, 1);
   }
 
   // Run Blynk and timer
