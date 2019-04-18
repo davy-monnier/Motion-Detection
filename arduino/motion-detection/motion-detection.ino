@@ -40,6 +40,10 @@ void loop() {
   if (pirValue == 1) {
     // Send motion detected to Blynk
     Blynk.virtualWrite(V1, true);
+
+    // Update timeClient and send date to Blynk
+    timeClient.update();
+    Blynk.virtualWrite(V0, timeClient.getFormattedTime());
   } else {
     // Send no motion detected to Blynk
     Blynk.virtualWrite(V1, false);
