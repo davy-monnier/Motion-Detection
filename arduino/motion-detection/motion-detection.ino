@@ -38,9 +38,11 @@ void loop() {
 
   // Manage motions
   if (pirValue == 1) {
-    Serial.println("Motion detected");
+    // Send motion detected to Blynk
+    Blynk.virtualWrite(V1, true);
   } else {
-    Serial.println("No motion detected");
+    // Send no motion detected to Blynk
+    Blynk.virtualWrite(V1, false);
   }
 
   // Manage light
