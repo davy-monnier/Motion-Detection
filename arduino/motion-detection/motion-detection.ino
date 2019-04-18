@@ -1,9 +1,19 @@
+int pirPin = D4;  // Define pin of PIR sensor
+int pirValue = 0; // Initialize value of pir sensor
+
 void setup() {
-  // put your setup code here, to run once:
+  // Debug console
+  Serial.begin(115200);
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Get value from PIR sensor
+  pirValue = digitalRead(pirPin);
 
+  // Print value of PIR sensor
+  Serial.println(piravlue);
+
+  // Delay of 1 sec
+  delay(1000);
 }
