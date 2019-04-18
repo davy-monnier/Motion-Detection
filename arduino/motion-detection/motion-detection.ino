@@ -24,7 +24,13 @@ void loop() {
   }
 
   // Manage light
-  Serial.println(lightVal);
+  if (lightVal < 100) {
+   Serial.println("Level 10");
+ } else if (lightVal < 200) {
+   Serial.println("Level 09");
+ } else if (lightVal < 300) {
+   Serial.println("Level 08");
+ }
 
   // Delay of 1 sec
   delay(1000);
