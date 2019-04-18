@@ -19,6 +19,7 @@ int pirPin = D4;    // Define pin of PIR sensor
 int pirValue = 0;   // Initialize value of PIR sensor
 int lightPin = A0;  // Define pin of light sensor           
 int lightVal = 0;   // Initialize value of light sensor
+int timer = 0;      // Timer 
 
 void setup() {
   // Debug console
@@ -74,6 +75,10 @@ void loop() {
 
   // Run Blynk and timer
   Blynk.run();
+
+  // Send timer
+  Blynk.virtualWrite(V3, timer);
+  timer+=1;
 
   // Delay of 1 sec
   delay(1000);
