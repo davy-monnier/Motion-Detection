@@ -211,11 +211,11 @@ app.home = { // main jQuery module
                     if (previousVal) {
                         if (previousVal != data[0]) {
                             if (!app.home.isArduinoRunning) {
-                                app.home.manageV3.showAllArduinoDep(); // hideAllArduinoDep
+                                app.home.manageV3.showAllArduinoDep();
                             }
                         } else {
-                            if (!app.home.isArduinoRunning) { // without !
-                                app.home.manageV3.showAllArduinoDep(); // hideAllArduinoDep
+                            if (app.home.isArduinoRunning) {
+                                app.home.manageV3.hideAllArduinoDep();
                             }
                         }
                         setTimeout(function() {
