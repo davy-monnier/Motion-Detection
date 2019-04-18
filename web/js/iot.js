@@ -18,10 +18,6 @@ app.home = { // main jQuery module
     isArduinoRunning : false,
 
     lastDetectedMotion : null,
-
-    isAlarmActivate : false,
-
-    adminEmail : 'hugo@heropolis.fr',
     
     initiate : { // initialisation
         
@@ -36,11 +32,23 @@ app.home = { // main jQuery module
             $(document).on('click', '#alarm-btn', function() { // toggle alarm
 
                 if ($(this).is(':checked')) {
-                    sessionStorage.setItem('alarm', 'alarm');
-                    app.home.isAlarmActivate = true;
+                    $.ajax(app.home.blynkUrl + 'update/V4?value=1', { // 1 to set arduinoAlarm to true
+                        type: 'GET',
+                        success: function(data) {
+                            // console.log("On Alarm", data);
+                        }, error: function(err) {
+                            // console.log("On Alarm Error", data);
+                        }
+                    });
                 } else {
-                    sessionStorage.removeItem('alarm');
-                    app.home.isAlarmActivate = false;
+                    $.ajax(app.home.blynkUrl + 'update/V4?value=0', {  // 0 to set arduinoAlarm to false
+                        type: 'GET',
+                        success: function(data) {
+                            // console.log("Off Alarm", data);
+                        }, error: function(err) {
+                            // console.log("Off Alarm Error", err);
+                        }
+                    });
                 }
 
             });
@@ -64,7 +72,7 @@ app.home = { // main jQuery module
                     var diffHrs = Math.floor((diffMs % 86400000) / 3600000);
                     var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
                     diffMins = diffMins + diffHrs * 60;
-                    if (diffMins > 0 && val >= diffMins) {
+                    if (diffMins >= 0 && val >= diffMins) {
                         $('#detected-state').removeClass('nok-state');
                         $('#detected-state').addClass('ok-state');
                         $('.detection-ok-dependence').each(function() {
@@ -88,11 +96,18 @@ app.home = { // main jQuery module
 
             $(document).on('click', '#launch-alert-btn', function() { // manually launch an alert
 
-                app.home.manageAlarm.launch();
+                $.ajax(app.home.blynkUrl + 'update/V4?value=2', {  // 2 to send mail directly from arduino
+                    type: 'GET',
+                    success: function(data) {
+                        // console.log("Manual Alarm", data);
+                        app.home.managePopup.display("Alert Success", "An email has been successfully sent to the system administrator.", "glyphicon-ok-circle");
+                    }, error: function(err) {
+                        // console.log("Manual Alarm Error", data);
+                        app.home.managePopup.display("Alert Failed", "Error trying to send an email to the system administrator.", "glyphicon-remove-circle");
+                    }
+                });
 
             });
-
-            // app.home.manageAlarm.launch();
 
         }
 
@@ -109,9 +124,14 @@ app.home = { // main jQuery module
                     success: function(data) {
                         // console.log("V0", data);
                         app.home.lastDetectedMotion = data[0];
+                        setTimeout(function() {
+                            app.home.manageV0.init();
+                        }, 500);
                     }, error: function(err) {
                         // console.log("V0 err", err);
-                        app.home.manageV0.init();
+                        setTimeout(function() {
+                            app.home.manageV0.init();
+                        }, 500);
                     }
                 });
 
@@ -140,9 +160,6 @@ app.home = { // main jQuery module
                         if (data[0] == "1") {
                             $('#motion-state').removeClass('nok-state');
                             $('#motion-state').addClass('ok-state');
-                            if (app.home.isAlarmActivate) {
-                                app.home.manageAlarm.launch();
-                            }
                         } else {
                             $('#motion-state').removeClass('ok-state');
                             $('#motion-state').addClass('nok-state');
@@ -152,7 +169,9 @@ app.home = { // main jQuery module
                         }, 500);
                     }, error: function(err) {
                         // console.log("V1 err", err);
-                        app.home.manageV1.init();
+                        setTimeout(function() {
+                            app.home.manageV1.init();
+                        }, 500);
                     }
                 });
 
@@ -184,7 +203,9 @@ app.home = { // main jQuery module
                         }, 500);
                     }, error: function(err) {
                         // console.log("V2 err", err);
-                        app.home.manageV2.init();
+                        setTimeout(function() {
+                            app.home.manageV2.init();
+                        }, 500);
                     }
                 });
 
@@ -228,7 +249,9 @@ app.home = { // main jQuery module
                     }
                 }, error: function(err) {
                     // console.log("V3 err", err);
-                    app.home.manageV3.init();
+                    setTimeout(function() {
+                        app.home.manageV3.init();
+                    }, 1000);
                 }
             });
 
@@ -242,9 +265,20 @@ app.home = { // main jQuery module
             $('.arduino-states-dependence').each(function() {
                 $(this).removeClass('none');
             });
-            if (sessionStorage.getItem('alarm') == 'alarm') {
-                $('#alarm-btn').click();
-            }
+            $.ajax(app.home.blynkUrl + 'get/V4', {
+                type: 'GET',
+                success: function(data) {
+                    // console.log("V4", data);
+                    if (data[0] == "1") {
+                        $('#alarm-btn').click();
+                    }
+                }, error: function(err) {
+                    // console.log("V4 err", err);
+                    setTimeout(function() {
+                        app.home.manageV3.showAllArduinoDep();
+                    }, 500);
+                }
+            });
 
         },
 
@@ -257,33 +291,6 @@ app.home = { // main jQuery module
                 $(this).addClass('none');
             });
             
-        }
-
-    },
-
-    manageAlarm : { // manage alarm (send mail + display popup on motion detected)
-
-        launch : function() {
-
-            $.ajax(app.home.blynkUrl + 'email', {
-                type: 'POST',
-                contentType: "application/json",
-                data : {
-                    to : app.home.adminEmail,
-                    title: "Motion Detection",
-                    subj: "An alert has been received on your system, please go there to verify."
-                },
-                header : 'Access-Control-Allow-Origin: *',
-                crossDomain: true,
-                success: function(data) {
-                    // console.log("Email", data);
-                    app.home.managePopup.display("Alert Success", "An email has been successfully sent to : "+app.home.adminEmail+".", "glyphicon-ok-circle");
-                }, error: function(err) {
-                    // console.log("Email err", err);
-                    app.home.managePopup.display("Alert Failed", "Error trying to send an email to : "+app.home.adminEmail+".", "glyphicon-remove-circle");
-                }
-            });
-
         }
 
     },
