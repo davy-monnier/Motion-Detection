@@ -1,1 +1,0 @@
-site web pour afficher la détection d'une présence ou non.
