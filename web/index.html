@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Entête  -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IOT Project Motion Detection">
+    <meta name="author" content="Hugo LE DEU - Ali BOUTALEB - Davy MONNIER - Zakaria MAHDAOUI">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="IOT Project Motion Detection">
+
+    <title>Motion Detection</title>
+    <link rel="icon" href="img/logo.jpg">
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/iot.css" rel="stylesheet">
+
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='css/fonts/Lora/Lora.css' rel='stylesheet' type='text/css'>
+    <link href='css/fonts/Open-Sans/Open-Sans.css' rel='stylesheet' type='text/css'>
+</head>
+
+<!-- Corp -->
+
+<body>
+
+    <!-- Contenu -->
+
+    <div id="content-div">
+
+        <div id="div_header_logo">
+            <h1>IOT Project - ESGI</h1>
+            <img src="img/esgi.png" id="esgi_logo">
+            <img src="img/logo.jpg" id="header_logo">
+            <img src="img/iot.jpeg" id="iot_logo">
+        </div>
+
+        <hr>
+
+        <div class="container">
+            <div class="row main-div">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                    <div class="row states-div">
+                        <b>Arduino state : </b><span id="arduino-state" class="nok-state"></span>
+                    </div>
+
+                    <hr class="arduino-states-dependence none">
+
+                    <div class="row states-div arduino-states-dependence none">
+                        <b>Alarm : </b>
+                        <span style="margin-left:10px;">
+                            <label class="switch">
+                                <input type="checkbox" id="alarm-btn">
+                                <span class="slider round"></span>
+                            </label>
+                        </span>
+                        <i style="margin-left:10px">( Launch an alert if motion is detected )</i>
+                    </div>
+
+                    <hr class="arduino-states-dependence none">
+
+                    <div class="row states-div arduino-states-dependence none">
+                        <b>Motion state : </b><span id="motion-state" class="nok-state"></span>
+                    </div>
+
+                    <hr class="arduino-states-dependence none">
+
+                    <div class="row states-div arduino-states-dependence none">
+                        <b>Light level : </b><meter id="light-level" min="1" low="2" high="9" optimum="10" max="10"></meter>
+                    </div>
+
+                    <hr class="arduino-states-dependence none">
+
+                    <div class="row states-div arduino-states-dependence none">
+
+                        <b>Check motion detected during last : </b><input type="number" placeholder="30" style="width:75px" id="check-minutes-val"></input><b> minutes</b>
+                        <button id="check-detection-btn" class="btn btn-primary">
+                            OK
+                        </button>
+
+                        <br class="check-detection-dependence none"><br class="check-detection-dependence none">
+
+                        <div class="check-detection-dependence none">
+                            <b>Detected : </b><span id="detected-state" class="nok-state"></span>
+                            <button id="launch-alert-btn" class="btn btn-primary detection-ok-dependence none" style="margin-left:10px;">
+                                LAUNCH ALERT
+                            </button>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+    </div>
+
+    <!-- Popup -->
+
+    <div class="popup none" id="popupHome">
+        <h2 class="popupTitle" id="titlePopupHome"></h2>
+        <hr style="margin-bottom: 20px; width: 75%;">
+        <i id="iconPopupHome" class="glyphicon"></i>
+        <p class="popupContent" id="contentPopupHome"></p>
+        <button id="btnOkPopupHome" class="btn btn-default btnPopup">Ok</p>
+    </div>
+    <div class="bgBlack none" id="bgBlackHome">
+    </div>
+
+    <!-- Footer -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div id="div_footer_logo">
+                        <img src="img/logo.jpg" id="footer_logo">
+                    </div>
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse icon_spin"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-youtube fa-stack-1x fa-inverse icon_spin"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.github.com/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse icon_spin"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Motion Detection -
+                        <script>document.write(new Date().getFullYear())</script>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="js/iot.js"></script>
+
+</body>
+
+</html>
+
+<!-- Copyright 2019 Hugo LE DEU - Ali BOUTALEB - Davy MONNIER - Zakaria MAHDAOUI -->
