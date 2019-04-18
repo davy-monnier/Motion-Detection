@@ -11,8 +11,12 @@ void loop() {
   // Get value from PIR sensor
   pirValue = digitalRead(pirPin);
 
-  // Print value of PIR sensor
-  Serial.println(piravlue);
+  // Manage motions
+  if (pirValue == 1) {
+    Serial.println("Motion detected");
+  } else {
+    Serial.println("No motion detected");
+  }
 
   // Delay of 1 sec
   delay(1000);
