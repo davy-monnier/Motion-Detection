@@ -1,4 +1,4 @@
-# Motion-Detection
+# Motion-AND-Light-Intensity-Detection
 
 ## The Project and goals :
 
