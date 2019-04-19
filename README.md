@@ -10,7 +10,7 @@ Initially the project need to be done in group of 2 to 4 people. As our group wa
 And the second group was responsible of the web front development and connecting the device to the cloud for collecting and displaying the sensors metrics in real time.
 
 ## ARDUINO INSTALLATION :
--Download link : (arduino.cc/en/main/software).
+-Download link : (https://arduino.cc/en/main/software).
 
 -Link for the drivers if you are not using a LINUX : (wiki.wemos.cc/downloads).
 
