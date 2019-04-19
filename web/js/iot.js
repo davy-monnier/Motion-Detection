@@ -13,7 +13,7 @@ app.home = { // main jQuery module
 
     },
 
-    blynkUrl : 'http://blynk-cloud.com/26d5fb1bc7514e218718f94a868d8a6f/',
+    blynkUrl : 'http://blynk-cloud.com/BlynkToken/',
 
     isArduinoRunning : false,
 

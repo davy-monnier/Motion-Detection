@@ -7,11 +7,11 @@
 #include <WiFiUdp.h>
 
 // Auth Token Blynk
-char auth[] = "26d5fb1bc7514e218718f94a868d8a6f";
+char auth[] = "BlynkToken";
 
 // WiFi credentials.
-char ssid[] = "iPhone de Wiz";
-char pass[] = "batard2.0";
+char ssid[] = "WiFi";
+char pass[] = "Password";
 
 // Define NTP Client to get time
 WiFiUDP ntpUDP;
@@ -32,7 +32,7 @@ BLYNK_WRITE(V4) {
   int alarmValue = param[0].asInt();
   if (alarmValue == 2) {
     timeClient.update();
-    Blynk.email("ali.boutaleb.p@gmail.com", "Motion Detection Project", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
+    Blynk.email("test@test.fr", "Motion Detection Project", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
     Blynk.tweet("Motion Detection Project - A motion has been detected ("+timeClient.getFormattedTime()+"), this message is coming from Arduino Wemos D1 mini.");
   } else {
     alarm = alarmValue;
@@ -70,7 +70,7 @@ void loop() {
     
     // If alarm activated send email
     if( (alarm == 1) && (alarmTimer == 0 || timer > alarmTimer + delayBetween2mails) ) {
-      Blynk.email("ali.boutaleb.p@gmail.com", "Motion Detection Project", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
+      Blynk.email("test@test.fr", "Motion Detection Project", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
       Blynk.tweet("Motion Detection Project - A motion has been detected ("+timeClient.getFormattedTime()+"), this message is coming from Arduino Wemos D1 mini.");
       alarmTimer = timer;
     }
