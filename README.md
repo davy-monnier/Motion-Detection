@@ -22,3 +22,5 @@ From your Arduino IDE -> tools -> libraries manager
 ntpCLient by fabrice weinberg
 
 blynk by volodymyr shymanskyy
+
+<img width="538" alt="device_archi" src="https://user-images.githubusercontent.com/36882252/56425920-7f404880-62b6-11e9-96c0-18470c863162.png">
