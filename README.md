@@ -6,6 +6,7 @@
 
 Motion and light intensity detection, is a group school project that aims to introduce students to the IOT domain by developing a small connected device to internet in order to fulfill a daily need. The device that we will build, is composed of a motion detector, and a light sensor that can be used for domestic, or commercial ends. Our project is made available to anyone who wants to try it and build himself.
 
+<img width="1440" alt="Capture d’écran 2019-04-19 à 16 53 29" src="https://user-images.githubusercontent.com/17027835/56429666-08aa4780-62c4-11e9-94cb-c22e2ebe6091.png">
 
 ### Equipements :
 
@@ -23,7 +24,6 @@ Motion and light intensity detection, is a group school project that aims to int
 
 
 <img width="538" alt="device_archi" src="https://user-images.githubusercontent.com/36882252/56425920-7f404880-62b6-11e9-96c0-18470c863162.png" >
-
 
 ## Arduino installation :
 
@@ -78,6 +78,8 @@ char auth[] = "BlynkAuthToken";
 ```
 
 - Launch your Blynk application and add widgets that you want in the application (timer V3...)
+
+<img width="538" alt="device_archi" src="https://user-images.githubusercontent.com/17027835/56429600-ce40aa80-62c3-11e9-9482-749d388a9dff.JPG" >
 
 - **Important :** add email widget with the destination email and twitter with your twitter account for alerts
 
