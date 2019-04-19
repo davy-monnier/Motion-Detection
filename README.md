@@ -28,6 +28,8 @@ int delayBetween2mails = 300; // Minimum delay in seconds between 2 emails
 
 ### Architecture :
 
+- Don't forget to plug your Wemos card to an external battery or your computer
+
 
 <img width="538" alt="device_archi" src="https://user-images.githubusercontent.com/36882252/56425920-7f404880-62b6-11e9-96c0-18470c863162.png" >
 
