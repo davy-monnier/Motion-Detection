@@ -18,5 +18,7 @@ And the second group was responsible of the web front development and connecting
 
 ## Required Libraries :
 From your Arduino IDE -> tools -> libraries manager
+
 ntpCLient by fabrice weinberg
+
 blynk by volodymyr shymanskyy
