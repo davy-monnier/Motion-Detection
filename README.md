@@ -36,6 +36,11 @@ Motion and light intensity detection, is a group school project that aims to int
 
 - Don't forget to put your Wifi credentials in the arduino code
 
+```
+char ssid[] = "Wifi";
+char pass[] = "Password";
+```
+
 
 ## Required Libraries :
 
@@ -58,7 +63,19 @@ From your Arduino IDE -> tools -> libraries manager
 
 - Get your Blynk authentication token received by email 
 
-- Put your token in the **web** code (blynkUrl in js/iot.js) and in the **arduino** code (auth[])
+- Put your token in the **web** code (web/js/iot.js) and in the **arduino** code
+
+**web**
+
+```
+blynkUrl : 'http://blynk-cloud.com/BlynkAuthToken/',
+```
+
+**arduino**
+
+```
+char auth[] = "BlynkAuthToken";
+```
 
 - Launch your Blynk application and add widgets that you want in the application (timer V3...)
 
