@@ -1,4 +1,4 @@
-#define BLYNK_PRINT Serial
+//#define BLYNK_PRINT Serial
 
 // Librairies to include
 #include <BlynkSimpleEsp8266.h>
@@ -26,29 +26,32 @@ int alarm = 0;                // Alarm (0=non active)
 int alarmTimer = 0;           // Store value after sensing an email
 int delayBetween2mails = 300; // Minimum delay in seconds between 2 emails
 
-/*
 // Function to manage alarm status
 BLYNK_WRITE(V4) {
+  
   int alarmValue = param[0].asInt();
   if (alarmValue == 2) {
-    Blynk.email("ali.boutaleb.p@gmail.com", "Motion detection project - Manual Alarm detected", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
-  }else {
+    timeClient.update();
+    Blynk.email("ali.boutaleb.p@gmail.com", "Motion Detection Project", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
+    Blynk.tweet("Motion Detection Project - A motion has been detected ("+timeClient.getFormattedTime()+"), this message is coming from Arduino Wemos D1 mini.");
+  } else {
     alarm = alarmValue;
   }
-}*/
+  
+}
 
 void setup() {
+  
   // Debug console
   Serial.begin(115200);
 
   // Initiate Blynk connection
   Blynk.begin(auth, ssid, pass);
 
-  Blynk.email("ali.boutaleb.p@gmail.com", "Motion detection project - Manual Alarm detected", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
-  Blynk.tweet("Hey, Blynkers! My Arduino can tweet now!");
 }
 
 void loop() {
+  
   // Get value from PIR sensor
   pirValue = digitalRead(pirPin);
 
@@ -57,18 +60,21 @@ void loop() {
 
   // Manage motions
   if (pirValue == 1) {
+    
     // Send motion detected to Blynk
     Blynk.virtualWrite(V1, true);
 
     // Update timeClient and send date to Blynk
     timeClient.update();
     Blynk.virtualWrite(V0, timeClient.getFormattedTime());
-/*
+    
     // If alarm activated send email
-    if( (alarm == 1) && (timer > alarmTimer+delayBetween2mails) ) {
-      Blynk.email("ali.boutaleb.p@gmail.com", "Motion detection project - Alarm detected", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
+    if( (alarm == 1) && (alarmTimer == 0 || timer > alarmTimer + delayBetween2mails) ) {
+      Blynk.email("ali.boutaleb.p@gmail.com", "Motion Detection Project", "A motion has been detected, this message is coming from Arduino Wemos D1 mini.");
+      Blynk.tweet("Motion Detection Project - A motion has been detected ("+timeClient.getFormattedTime()+"), this message is coming from Arduino Wemos D1 mini.");
       alarmTimer = timer;
-    }*/
+    }
+    
   } else {
     // Send no motion detected to Blynk
     Blynk.virtualWrite(V1, false);
@@ -106,4 +112,5 @@ void loop() {
 
   // Delay of 1 sec
   delay(1000);
+  
 }
