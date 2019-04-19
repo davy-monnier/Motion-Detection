@@ -11,8 +11,10 @@ And the second group was responsible of the web front development and connecting
 
 ## ARDUINO INSTALLATION :
 -Download link : arduino.cc/en/main/software.
+
 -Link for the drivers if you are not using a LINUX : wiki.wemos.cc/downloads.
--Follow the steps (installing with Boards Manager) in the link if you have never user ESP8266 with ARDUINO IDE : github.com/esp8266/Arduino#installing-with-boards-manager.
+
+-Follow the steps (installing with Boards Manager) in the link if you have never user ESP8266 with ARDUINO IDE: github.com/esp8266/Arduino#installing-with-boards-manager.
 
 ## Required Libraries :
 From your Arduino IDE -> tools -> libraries manager
