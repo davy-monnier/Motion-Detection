@@ -10,11 +10,11 @@ Initially the project need to be done in group of 2 to 4 people. As our group wa
 And the second group was responsible of the web front development and connecting the device to the cloud for collecting and displaying the sensors metrics in real time.
 
 ## ARDUINO INSTALLATION :
--Download link : arduino.cc/en/main/software.
+-Download link : (arduino.cc/en/main/software).
 
--Link for the drivers if you are not using a LINUX : wiki.wemos.cc/downloads.
+-Link for the drivers if you are not using a LINUX : (wiki.wemos.cc/downloads).
 
--Follow the steps (installing with Boards Manager) in the link if you have never user ESP8266 with ARDUINO IDE: github.com/esp8266/Arduino#installing-with-boards-manager.
+-Follow the steps (installing with Boards Manager) in the link if you have never user ESP8266 with ARDUINO IDE: (github.com/esp8266/Arduino#installing-with-boards-manager).
 
 ## Required Libraries :
 From your Arduino IDE -> tools -> libraries manager
