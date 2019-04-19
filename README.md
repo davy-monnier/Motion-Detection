@@ -64,4 +64,6 @@ From your Arduino IDE -> tools -> libraries manager
 
 - **Important :** add email widget with the destination email and twitter with your twitter account for alerts
 
+- Optionnal : you can host your blynk server on local if you want --> http://help.blynk.cc/blynk-local-server/local-server
+
 ## You can now enjoy the project by compiling arduino code on the Wemos card and launch the web by clicking on web/index.html
