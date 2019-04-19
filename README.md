@@ -1,12 +1,18 @@
-# Motion-AND-Light-Intensity-Detection
+# Motion-And-Light-Intensity-Detection
 
 
 ## The Project and goals :
 
 
-Motion and light intensity detection, is a group school project that aims to introduce students to the IOT domain by developing a small connected device to internet in order to fulfill a daily need. The device that we will build, is composed of a motion detector, and a light sensor that can be used for domestic, or commercial ends. Our project is made available to anyone who wants to try it and build himself.
+Motion and Light Intensity Detection, is a group school project that aims students to introduce them to the IOT domain by developing a small connected device to internet in order to fulfill a daily need. The device that we built is composed of a motion detector and a light sensor that can be used for domestic, or commercial used. Our project is available to anyone who wants to try it and build himself.
 
 <img width="1440" alt="Capture d’écran 2019-04-19 à 16 53 29" src="https://user-images.githubusercontent.com/17027835/56429666-08aa4780-62c4-11e9-94cb-c22e2ebe6091.png">
+
+A local web application is provided to see the issues of sensors and allows you to activate an alarm which will send you an email and post a tweet if a motion is detected. The delay between two alerts is 5 minutes (300 seconds) when the alarm is activated, you can change that in the arduino code like below.
+
+```
+int delayBetween2mails = 300; // Minimum delay in seconds between 2 emails
+```
 
 ### Equipements :
 
